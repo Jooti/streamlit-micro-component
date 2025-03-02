@@ -7,7 +7,7 @@ long_description = (this_directory / "README.md").read_text()
 
 setuptools.setup(
     name="streamlit-micro-component",
-    version="0.0.9",
+    version="0.0.14",
     author="Amir Ehsani ",
     author_email="amir.ehsani@gmail.com",
     description="Streamlit component that allows you to make your own micro custom component easily",

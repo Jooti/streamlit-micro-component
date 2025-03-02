@@ -28,22 +28,12 @@ function onRender(event: Event): void {
   result.id = data.args["key"] + "-result"
   
   script.innerHTML = `
-  (function() {
-      var micro_components = parent.document.querySelectorAll("iframe[title='micro_component.micro_component']");
-      console.log(micro_components);
-      for (var i = 0; i < micro_components.length; i++) {
-              c = micro_components[i];
-              sandbox = c.getAttribute("sandbox");
-              if (!sandbox.endsWith("allow-top-navigation")){
-                c.setAttribute("sandbox", sandbox + "allow-top-navigation-by-user-activation allow-top-navigation");
-                c.contentWindow.location.reload();
-              }
-      }
-    })();
     function setValue(value){
       document.getElementById('${result.id}').innerText = value
       document.getElementById('${result.id}')?.click()
-        }`
+        }
+    ${data.args["script"]??""}
+        `
   // Maintain compatibility with older versions of Streamlit that don't send
   // a theme object.
   if (data.theme) {
@@ -83,7 +73,6 @@ function onRender(event: Event): void {
   
   let body = document.getElementsByTagName("body")[0]
   
-  console.log(`${key} body-client-height: ${body.clientHeight} outer-height: ${window.outerHeight}`)
   Streamlit.setFrameHeight(body.clientHeight)
 }
 

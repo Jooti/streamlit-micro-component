@@ -72,7 +72,7 @@ def micro_component(theme, key=None, **args):
     # value of the component before the user has interacted with it.
     template = Environment(loader=BaseLoader).from_string(theme)
     content = template.render(**args)
-    component_value = _component_func(content=content,  key=key, default=0)
+    component_value = _component_func(content=content, key=key, script=args.get("script"), default=0)
 
     # We could modify the value returned from the component if we wanted.
     # There's no need to do this in our simple example - but it's an option.
